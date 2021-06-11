@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.main-container {
+  margin-top: 50px;
+}
+
 label {
   font-weight: bold;
   display: flex;
@@ -21,5 +25,13 @@ input[type='email'] {
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
+  /* margin-bottom: 20px; */
+}
+
+.form-control {
   margin-bottom: 20px;
+}
+
+.error {
+  color: red;
 }
