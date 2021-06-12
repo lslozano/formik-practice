@@ -43,22 +43,29 @@ const YoutubeForm = () => {
     validate,
   });
 
-  const { errors } = formik;
+  const { 
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    errors,
+    values,
+    touched } = formik;
 
   return (
     <div className='main-container'>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="form-control">
           <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
             name="name"
-            onChange={formik.handleChange}
-            value={formik.values.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.name}
           />
 
-          {errors.name ? <div className="error">{errors.name}</div> : null}
+          {errors.name && touched.name ? <div className="error">{errors.name}</div> : null}
         </div>
 
         <div className="form-control">
@@ -67,11 +74,12 @@ const YoutubeForm = () => {
             type="email"
             id="email"
             name="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.email}
           />
 
-          {errors.email ? <div className="error">{errors.email}</div> : null}
+          {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
         </div>
 
         <div className="form-control">
@@ -80,11 +88,12 @@ const YoutubeForm = () => {
             type="text"
             id="channel"
             name="channel"
-            onChange={formik.handleChange}
-            value={formik.values.channel}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.channel}
           />
 
-          {errors.channel ? (
+          {errors.channel && touched.channel ? (
             <div className="error">{errors.channel}</div>
           ) : null}
         </div>
