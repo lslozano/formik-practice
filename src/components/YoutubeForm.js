@@ -61,7 +61,7 @@ const YoutubeForm = () => {
           <label htmlFor='address'>Address</label>
           <Field name='address'>
             {props => {
-                const { field, form, meta } = props;
+                const { field, meta } = props;
                 return (
                   <div>
                     <input type='text' id='address' {...field}/>
