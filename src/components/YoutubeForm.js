@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const initialValues = {
   name: "",
@@ -12,35 +13,19 @@ const onSubmit = (values) => {
   console.log(values);
 };
 
-const validate = (values) => {
-  let errors = {};
-
-  if (!values.name) {
-    errors.name = "Required";
-  }
-
-  if (!values.email) {
-    errors.email = "Required";
-  } else if (
-    !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-      values.email
-    )
-  ) {
-    errors.email = "Invalid email format";
-  }
-
-  if (!values.channel) {
-    errors.channel = "Required";
-  }
-
-  return errors;
-};
+const validationSchema = Yup.object({
+  name: Yup.string().required("Required"),
+  email: Yup.string()
+    .email("Invalid email format.")
+    .required("Required"),
+  channel: Yup.string().required("Required"),
+});
 
 const YoutubeForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validate,
+    validationSchema,
   });
 
   const { 
@@ -52,7 +37,7 @@ const YoutubeForm = () => {
     touched } = formik;
 
   return (
-    <div className='main-container'>
+    <div className="main-container">
       <form onSubmit={handleSubmit}>
         <div className="form-control">
           <label htmlFor="name">Name</label>
@@ -65,7 +50,9 @@ const YoutubeForm = () => {
             value={values.name}
           />
 
-          {errors.name && touched.name ? <div className="error">{errors.name}</div> : null}
+          {errors.name && touched.name ? (
+            <div className="error">{errors.name}</div>
+          ) : null}
         </div>
 
         <div className="form-control">
@@ -79,7 +66,9 @@ const YoutubeForm = () => {
             value={values.email}
           />
 
-          {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
+          {errors.email && touched.email ? (
+            <div className="error">{errors.email}</div>
+          ) : null}
         </div>
 
         <div className="form-control">
