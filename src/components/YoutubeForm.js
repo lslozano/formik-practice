@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Formik,
   Form,
@@ -10,6 +10,8 @@ import {
 import * as Yup from "yup";
 
 import TextError from "./TextError";
+
+import savedValues from "../data/formData";
 
 const initialValues = {
   name: "",
@@ -52,12 +54,14 @@ const validateComments = (value) => {
 };
 
 const YoutubeForm = () => {
+  const [formValues, setFormValues] = useState(null);
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={formValues || initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
-      validateOnMount
+      enableReinitialize
+      // validateOnMount
       // This two can be set to false so the validation wont trigger automatically
       // validateOnChange 
       // validateOnBlur
@@ -169,7 +173,7 @@ const YoutubeForm = () => {
                 }}
               </FieldArray>
             </div>
-            <button
+            {/* <button
               type="button"
               onClick={() => formik.validateField('comments')}
             >
@@ -192,8 +196,9 @@ const YoutubeForm = () => {
               comments: true,
             })}>
               Visit all fields
-            </button>
+            </button> */}
             {/* <button type="submit" disabled={!formik.isValid}>Submit</button> */}
+            <button type="button" onClick={() => setFormValues(savedValues)}>Load saved data</button>
             <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>Submit</button>
           </Form>
         );
