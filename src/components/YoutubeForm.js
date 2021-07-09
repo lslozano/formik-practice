@@ -25,9 +25,11 @@ const initialValues = {
   phNumbers: [""],
 };
 
-const onSubmit = (values) => {
+const onSubmit = (values, onSubmitProps) => {
   // The values object contains all the properties established as values in the input fields.
-  console.log(values);
+  console.log('Form data:', values);
+  console.log('On submit props:', onSubmitProps);
+  onSubmitProps.setSubmitting(false);
 };
 
 const validationSchema = Yup.object({
@@ -55,6 +57,7 @@ const YoutubeForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      validateOnMount
       // This two can be set to false so the validation wont trigger automatically
       // validateOnChange 
       // validateOnBlur
@@ -62,7 +65,6 @@ const YoutubeForm = () => {
       {/* Function as children for the Formik component */}
       {/* It gives us access to the formik props, which lets us control everything that has to do with our form. */}
       {(formik) => {
-        console.log(formik);
         return (
           <Form>
             <div className="form-control">
@@ -191,7 +193,8 @@ const YoutubeForm = () => {
             })}>
               Visit all fields
             </button>
-            <button type="submit">Submit</button>
+            {/* <button type="submit" disabled={!formik.isValid}>Submit</button> */}
+            <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>Submit</button>
           </Form>
         );
       }}
