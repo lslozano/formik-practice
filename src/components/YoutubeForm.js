@@ -32,6 +32,7 @@ const onSubmit = (values, onSubmitProps) => {
   console.log('Form data:', values);
   console.log('On submit props:', onSubmitProps);
   onSubmitProps.setSubmitting(false);
+  onSubmitProps.resetForm();
 };
 
 const validationSchema = Yup.object({
@@ -198,6 +199,8 @@ const YoutubeForm = () => {
               Visit all fields
             </button> */}
             {/* <button type="submit" disabled={!formik.isValid}>Submit</button> */}
+            {/* Automatically resets the form values (not when they have been loaded) */}
+            <button type="reset">Reset form values</button>
             <button type="button" onClick={() => setFormValues(savedValues)}>Load saved data</button>
             <button type="submit" disabled={!formik.isValid || formik.isSubmitting}>Submit</button>
           </Form>
