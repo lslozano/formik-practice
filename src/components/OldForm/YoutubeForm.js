@@ -11,7 +11,7 @@ import * as Yup from "yup";
 
 import TextError from "./TextError";
 
-import savedValues from "../data/formData";
+import savedValues from "../../data/formData";
 
 const initialValues = {
   name: "",
