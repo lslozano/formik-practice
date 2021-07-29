@@ -1,10 +1,10 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
-import TextError from "./TextError";
+import TextError from "../TextError";
 
 const Select = ({ type, label, name, options }) => {
-  const option = (option) => {
-    const { value, name } = option;
+  const createOption = (option) => {
+    const { name, value } = option;
     return (
       <option key={value} value={value}>
         {name}
@@ -16,7 +16,7 @@ const Select = ({ type, label, name, options }) => {
     <div className='form-control'>
       <label htmlFor={name}>{label}</label>
       <Field as={type} id={name} name={name}>
-        {options.map(option)}
+        {options.map(createOption)}
       </Field>
       <ErrorMessage name={name} component={TextError} />
     </div>

@@ -1,8 +1,9 @@
 import React from "react";
 
-import Input from "./Input";
-import Textarea from "./Textarea";
-import Select from "./Select";
+import Input from "./FormikFields/Input";
+import Textarea from "./FormikFields/Textarea";
+import Select from "./FormikFields/Select";
+import RadioButtons from "./FormikFields/RadioButtons";
 
 const FormikControl = ({ control, type, label, name, options }) => {
   switch (control) {
@@ -13,6 +14,7 @@ const FormikControl = ({ control, type, label, name, options }) => {
     case "select":
       return <Select type={type} label={label} name={name} options={options} />;
     case "radio":
+      return <RadioButtons type={type} label={label} name={name} options={options} />;
     case "checkbox":
     case "date":
     default:

@@ -30,6 +30,16 @@ select {
   margin-bottom: 20px;
 }
 
+.radio-options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-option {
+  display: flex;
+  flex-direction: row;
+}
+
 .error {
   color: red;
 }
