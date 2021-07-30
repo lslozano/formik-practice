@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import ButtonLink from '../ButtonLink';
 
 const LoginForm = () => {
   return (
     <div>
-      <button className="link-button">
-        <Link to='/'>
-          Back home
-        </Link>
-      </button>
+      <ButtonLink 
+        path="/"
+        text="Back home"
+      />
       <h1>Hi there</h1>
     </div>
   )

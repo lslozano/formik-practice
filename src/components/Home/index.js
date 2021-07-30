@@ -1,21 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from "react";
+
+import ButtonLink from "../ButtonLink";
 
 const Home = () => {
   return (
-    <div className="home">
-      <button className="link-button">
-        <Link to='/formik-example'>
-          Formik example
-        </Link>
-      </button>
-      <button className="link-button">
-        <Link to='/login-form'>
-          Login form example
-        </Link>
-      </button>
+    <div className="home-container">
+      <h1>Forms examples</h1>
+      <div className="buttons-container">
+        <ButtonLink path="/formik-example" text="Full form example" />
+        <ButtonLink path="/login-form" text="Login form example" />
+      </div>
     </div>
-  )
+  );
 };
 
 export default Home;

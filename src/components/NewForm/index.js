@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
-import { Link } from 'react-router-dom';
 import * as Yup from "yup";
 
 import FormikControl from "../FormikControl";
+import ButtonLink from "../ButtonLink";
 
 const FormikContainer = () => {
   const [date, setDate] = useState({
-    day: '',
-    month: '',
-    year: '',
+    day: "",
+    month: "",
+    year: "",
   });
 
   const initialValues = {
@@ -31,12 +31,20 @@ const FormikContainer = () => {
   });
 
   const onSubmit = (values) => {
-    const dateSelected = new Date(JSON.parse(JSON.stringify(values.birthDate))) 
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dateSelected = new Date(JSON.parse(JSON.stringify(values.birthDate)));
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
 
     setDate({
       day: daysOfWeek[dateSelected.getDay()],
-      month: dateSelected.toLocaleString('default', { month: 'long' }),
+      month: dateSelected.toLocaleString("default", { month: "long" }),
       year: dateSelected.getFullYear(),
     });
   };
@@ -62,11 +70,7 @@ const FormikContainer = () => {
 
   return (
     <div>
-      <button className="link-button">
-        <Link to='/'>
-          Back home
-        </Link>
-      </button>
+      <ButtonLink path="/" text="Back home" />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -118,8 +122,10 @@ const FormikContainer = () => {
           );
         }}
       </Formik>
-      {date.day !== '' && (
-        <h1>Its {date.month} {date.day} {date.year} </h1>
+      {date.day !== "" && (
+        <h1>
+          Its {date.month} {date.day} {date.year}{" "}
+        </h1>
       )}
     </div>
   );

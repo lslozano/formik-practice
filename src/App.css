@@ -4,6 +4,14 @@
   height: 100%;
 }
 
+.home-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
 label {
   font-weight: bold;
   display: flex;
@@ -41,6 +49,20 @@ select {
 .checkbox-option {
   display: flex;
   flex-direction: row;
+}
+
+.link-button {
+  background-color: #185adb;
+  border: none;
+  border-radius: 25px;
+  height: 50px;
+  margin: 0 25px;
+  width: 200px;
+}
+
+.link-button a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .error {
