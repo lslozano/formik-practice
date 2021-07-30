@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
+import { Link } from 'react-router-dom';
 import * as Yup from "yup";
 
-import FormikControl from "./FormikControl";
+import FormikControl from "../FormikControl";
 
 const FormikContainer = () => {
   const [date, setDate] = useState({
@@ -61,6 +62,11 @@ const FormikContainer = () => {
 
   return (
     <div>
+      <button className="link-button">
+        <Link to='/'>
+          Back home
+        </Link>
+      </button>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

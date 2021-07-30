@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
-import TextError from "../TextError";
+import TextError from "../../TextError";
 
 const CheckboxGroup = ({ type, label, name, options }) => {
   const createCheckboxes = (option, field) => {

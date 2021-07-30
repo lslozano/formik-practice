@@ -1,12 +1,23 @@
 import React from 'react';
-import './App.css';
-import FormikContainer from './components/NewForm/FormikContainer';
-// import YoutubeForm from './components/OldForm/YoutubeForm';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
+import './App.css';
+
+import Home from './components/Home/index';
+import LoginForm from './components/LoginForm/index'
+import FormikContainer from './components/NewForm/index';
+
+
+const App = () => {
   return (
     <div className="App">
-      <FormikContainer />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/formik-example" component={FormikContainer} />
+          <Route exact path="/login-form" component={LoginForm} />
+        </Switch>
+      </Router>
     </div>
   );
 }
