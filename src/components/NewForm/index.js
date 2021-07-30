@@ -69,8 +69,7 @@ const FormikContainer = () => {
   ];
 
   return (
-    <div>
-      <ButtonLink path="/" text="Back home" />
+    <div className="full-form">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -117,7 +116,7 @@ const FormikContainer = () => {
                 label="Pick a date"
                 name="birthDate"
               />
-              <button type="submit">Submit</button>
+              <button className="link-button" type="submit">Submit</button>
             </Form>
           );
         }}
@@ -127,6 +126,7 @@ const FormikContainer = () => {
           Its {date.month} {date.day} {date.year}{" "}
         </h1>
       )}
+      <ButtonLink path="/" text="Back home" />
     </div>
   );
 };

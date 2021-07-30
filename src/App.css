@@ -12,6 +12,21 @@
   width: 100%;
 }
 
+.full-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.full-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-form button {
+  align-self: center;
+}
+
 label {
   font-weight: bold;
   display: flex;
@@ -55,6 +70,7 @@ select {
   background-color: #185adb;
   border: none;
   border-radius: 25px;
+  color: #fff;
   height: 50px;
   margin: 0 25px;
   width: 200px;
