@@ -10,15 +10,21 @@ const FormikContainer = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    contact: "",
+    modeOfContact: "",
     phone: "",
   };
 
   const validationSchema = Yup.object({
     email: Yup.string().required("Required").email(),
     password: Yup.string().required("Required"),
-    confirmPassword: Yup.string().required("Required"),
-    contact: Yup.string().required("Required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), ''], 'Passwords must match')
+      .required("Required"),
+    modeOfContact: Yup.string().required("Required"),
+    phone: Yup.string().when('modeOfContact', {
+        is: 'phonemoc',
+        then: Yup.string().required("Required"),
+      })
   });
 
   const onSubmit = (values) => {
@@ -26,8 +32,8 @@ const FormikContainer = () => {
   };
 
   const contactOptions = [
-    { name: "Email", value: "email" },
-    { name: "Telephone", value: "phone" },
+    { name: "Email", value: "emailmoc" },
+    { name: "Telephone", value: "phonemoc" },
   ];
 
   return (
@@ -62,16 +68,16 @@ const FormikContainer = () => {
                 control="radio"
                 type="radio"
                 label="Mode of contact"
-                name="radioOption"
+                name="modeOfContact"
                 options={contactOptions}
               />
               <FormikControl
                 control="input"
-                type="tel"
-                label="Phone"
+                type="text"
+                label="Phone number"
                 name="phone"
               />
-              <button className="link-button" type="submit">Submit</button>
+              <button className="link-button" type="submit" disabled={!formik.isValid}>Submit</button>
             </Form>
           );
         }}
