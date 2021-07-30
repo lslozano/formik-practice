@@ -27,6 +27,16 @@
   align-self: center;
 }
 
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 55px;
+}
+
+.login-form form {
+  margin-bottom: 55px;
+}
+
 label {
   font-weight: bold;
   display: flex;
