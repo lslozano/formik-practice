@@ -30,12 +30,14 @@ select {
   margin-bottom: 20px;
 }
 
-.radio-options-container {
+.radio-options-container,
+.checkbox-options-container {
   display: flex;
   flex-direction: column;
 }
 
-.radio-option {
+.radio-option,
+.checkbox-option {
   display: flex;
   flex-direction: row;
 }
