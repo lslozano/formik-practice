@@ -5,7 +5,11 @@ import * as Yup from "yup";
 import FormikControl from "./FormikControl";
 
 const FormikContainer = () => {
-  const [date, setDate] = useState();
+  const [date, setDate] = useState({
+    day: '',
+    month: '',
+    year: '',
+  });
 
   const initialValues = {
     email: "",
@@ -26,9 +30,14 @@ const FormikContainer = () => {
   });
 
   const onSubmit = (values) => {
-    setDate(values.birthDate);
-    console.log("Form data:", values);
-    console.log("Saved data", JSON.parse(JSON.stringify(values)));
+    const dateSelected = new Date(JSON.parse(JSON.stringify(values.birthDate))) 
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    setDate({
+      day: daysOfWeek[dateSelected.getDay()],
+      month: dateSelected.toLocaleString('default', { month: 'long' }),
+      year: dateSelected.getFullYear(),
+    });
   };
 
   const dropdownOptions = [
@@ -103,8 +112,8 @@ const FormikContainer = () => {
           );
         }}
       </Formik>
-      {date && (
-        <h1>A date has been selected</h1>
+      {date.day !== '' && (
+        <h1>Its {date.month} {date.day} {date.year} </h1>
       )}
     </div>
   );
