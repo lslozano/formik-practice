@@ -9,6 +9,7 @@ const Home = () => {
       <div className="buttons-container">
         <ButtonLink path="/formik-example" text="Full form example" />
         <ButtonLink path="/login-form" text="Login form example" />
+        <ButtonLink path="/registration-form" text="Registration form example" />
       </div>
     </div>
   );

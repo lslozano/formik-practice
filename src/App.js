@@ -6,6 +6,7 @@ import './App.css';
 import Home from './components/Home/index';
 import LoginForm from './components/LoginForm/index'
 import FormikContainer from './components/NewForm/index';
+import RegistrationForm from './components/RegistrationForm/index';
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/formik-example" component={FormikContainer} />
           <Route exact path="/login-form" component={LoginForm} />
+          <Route exact path="/registration-form" component={RegistrationForm} />
         </Switch>
       </Router>
     </div>

@@ -1,28 +1,37 @@
 import React from "react";
-
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import FormikControl from "../FormikControl";
 import ButtonLink from "../ButtonLink";
 
-const LoginForm = () => {
+const FormikContainer = () => {
   const initialValues = {
     email: "",
     password: "",
+    confirmPassword: "",
+    contact: "",
+    phone: "",
   };
 
   const validationSchema = Yup.object({
     email: Yup.string().required("Required").email(),
     password: Yup.string().required("Required"),
+    confirmPassword: Yup.string().required("Required"),
+    contact: Yup.string().required("Required"),
   });
 
   const onSubmit = (values) => {
-    console.log("The values of the form are:", values);
+    console.log('This were the values submitted', values);
   };
 
+  const contactOptions = [
+    { name: "Email", value: "email" },
+    { name: "Telephone", value: "phone" },
+  ];
+
   return (
-    <div className="login-form">
+    <div className="full-form">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -43,9 +52,26 @@ const LoginForm = () => {
                 label="Password"
                 name="password"
               />
-              <button className="link-button" type="submit" disabled={!formik.isValid}>
-                Submit
-              </button>
+              <FormikControl
+                control="input"
+                type="password"
+                label="Confirm Password"
+                name="confirmPassword"
+              />
+              <FormikControl
+                control="radio"
+                type="radio"
+                label="Mode of contact"
+                name="radioOption"
+                options={contactOptions}
+              />
+              <FormikControl
+                control="input"
+                type="tel"
+                label="Phone"
+                name="phone"
+              />
+              <button className="link-button" type="submit">Submit</button>
             </Form>
           );
         }}
@@ -55,4 +81,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default FormikContainer;
