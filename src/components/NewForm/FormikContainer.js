@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import FormikControl from "./FormikControl";
 
 const FormikContainer = () => {
+  const [date, setDate] = useState();
+
   const initialValues = {
     email: "",
     description: "",
     selectOption: "",
     radioOption: "",
     checkboxOption: [],
+    birthDate: null,
   };
 
   const validationSchema = Yup.object({
@@ -19,9 +22,14 @@ const FormikContainer = () => {
     selectOption: Yup.string().required("Required"),
     radioOption: Yup.string().required("Required"),
     checkboxOption: Yup.array().min(1, "Required"),
+    birthDate: Yup.date().required("Required").nullable(),
   });
 
-  const onSubmit = (values) => console.log("Form data:", values);
+  const onSubmit = (values) => {
+    setDate(values.birthDate);
+    console.log("Form data:", values);
+    console.log("Saved data", JSON.parse(JSON.stringify(values)));
+  };
 
   const dropdownOptions = [
     { name: "Select an option", value: "" },
@@ -43,52 +51,62 @@ const FormikContainer = () => {
   ];
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      {(formik) => {
-        return (
-          <Form>
-            <FormikControl
-              control="input"
-              type="email"
-              label="Email"
-              name="email"
-            />
-            <FormikControl
-              control="textarea"
-              type="textarea"
-              label="Description"
-              name="description"
-            />
-            <FormikControl
-              control="select"
-              type="select"
-              label="Select a topic"
-              name="selectOption"
-              options={dropdownOptions}
-            />
-            <FormikControl
-              control="radio"
-              type="radio"
-              label="Pick one option"
-              name="radioOption"
-              options={radioOptions}
-            />
-            <FormikControl
-              control="checkbox"
-              type="checkbox"
-              label="Pick options"
-              name="checkboxOption"
-              options={checkboxOptions}
-            />
-            <button type="submit">Submit</button>
-          </Form>
-        );
-      }}
-    </Formik>
+    <div>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        {(formik) => {
+          return (
+            <Form>
+              <FormikControl
+                control="input"
+                type="email"
+                label="Email"
+                name="email"
+              />
+              <FormikControl
+                control="textarea"
+                type="textarea"
+                label="Description"
+                name="description"
+              />
+              <FormikControl
+                control="select"
+                type="select"
+                label="Select a topic"
+                name="selectOption"
+                options={dropdownOptions}
+              />
+              <FormikControl
+                control="radio"
+                type="radio"
+                label="Pick one option"
+                name="radioOption"
+                options={radioOptions}
+              />
+              <FormikControl
+                control="checkbox"
+                type="checkbox"
+                label="Pick options"
+                name="checkboxOption"
+                options={checkboxOptions}
+              />
+              <FormikControl
+                control="date"
+                label="Pick a date"
+                name="birthDate"
+              />
+              <button type="submit">Submit</button>
+            </Form>
+          );
+        }}
+      </Formik>
+      {date && (
+        <h1>A date has been selected</h1>
+      )}
+    </div>
   );
 };
 
